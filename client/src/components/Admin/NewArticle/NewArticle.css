@@ -1,0 +1,141 @@
+.article-title {
+    border: none;
+    border-bottom: 4px solid rgb(220, 220, 220);
+    font-size: 15px;
+    font-family: 'cairo bold';
+    color: grey;
+    margin: 10px 0;
+}
+
+
+.article-text {
+    width: 100%;
+    resize: none;
+    border: none;
+    box-shadow: 0 0 10px rgb(0,0,0,0.1);
+    margin: 20px 0;
+    padding: 10px;
+    font-size: 24px;
+    font-family: 'Scheherazade', sans-serif;
+    min-height: 300px;
+    border-radius: 4px;
+    color: grey;
+}
+
+.article-informations{
+    box-shadow: 0 0 10px rgb(0,0,0,0.1);
+    border-radius: 4px;
+    padding: 10px;
+}
+
+.article-informations > h3 {
+    font-size: 18px;
+    text-align: center;
+    margin: none;
+}
+
+.input  {
+    display: flex;
+    box-shadow: 0 2px 2px rgb(0,0,0,0.1);
+    border-radius: 2px;
+    align-items: center;
+    margin: 10px 0;
+    position: relative;
+    color: rgb(146, 146, 146);
+}
+
+.input > span {
+    position: absolute;
+    left: 5px;
+    top: 15px;
+    color: inherit;
+    font-size: 15px;
+}
+
+.input-group{
+    margin: 10px 0;
+}
+
+.article-informations select , 
+.article-informations input {
+    border: none;
+    width: 100%;
+    padding: 0px 10px;
+    font-size: 13px;
+    font-family: 'Cairo Regular';
+    color: inherit;
+    background: white;
+    line-height: 40px;
+    -webkit-appearance: none;
+    position: relative;
+}
+
+input::placeholder{
+    color: inherit;
+}
+
+.input-group:before{
+    width: 10px;
+    height: 10px;
+    background: red;
+    position: absolute;
+}
+
+.article-informations h5 {
+    border-bottom: 1px solid grey;
+    margin-top: 20px;
+}
+
+.img-input{
+    height: 200px;
+    box-shadow: 0 2px 8px rgb(0,0,0,0.1);
+    border-radius: 2px;
+    display: flex;
+    background: rgb(0,0,0, 0.1);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.img-input > input {
+    opacity: 0;
+    position: absolute;
+    width: 0;
+    height: 0;
+}
+
+.img-input > div {
+    display: flex;
+    flex-direction: row;
+}
+
+.img-input label,  .img-input button {
+    background: white;
+    padding: 0 10px;
+    line-height: 40px;
+    margin: 0 2px;
+    border-radius: 2px;
+    box-shadow: 0 0px 2px rgb(0,0,0,0.1);
+    font-size: 15px;
+    display: block;
+
+}
+
+.img-input > img {
+    height: 100%;
+    width: auto;
+    position: absolute;
+    z-index: -99;
+}
+
+.submit {
+    display: flex;
+    justify-content: stretch;
+}
+
+.submit > button {
+    width: 100%;
+    margin: 10px 0;
+}
+
