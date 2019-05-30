@@ -9,3 +9,18 @@
   width: 100px;
   height: 100px;
 }
+
+.article-enter {
+  opacity: 0;
+}
+.article-enter-active {
+  opacity: 1;
+  transition: opacity 500ms ease-in;
+}
+.article-exit {
+  opacity: 1;
+}
+.article-exit-active {
+  opacity: 0;
+  transition: opacity 500ms ease-in;
+}

@@ -1,16 +1,32 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import axios from 'axios'
+import moment from 'moment'
 
 import Sep from '../../FullWidthSep'
 import './Articles.css'
 
 export class Articles extends Component {
+    state = {
+        articles: []
+    }
+    componentDidMount() {
+        axios.get('/api/articles')
+            .then(res => {
+                console.log(res.data)
+                this.setState(prevState => ({
+                    articles: [...prevState.articles, ...res.data]
+                }))
+            })
+            .catch(err => console.log(err))
+    }
     render() {
         return (
+
             <div className="Articles">
                 <div className="head">
                     <h3> المقالات المنشورة</h3>
-                    <Link to='/admin/NewArticle/' className="btn-round btn-main add-article">مقال جديد</Link>
+                    <Link to={`${this.props.path}/NewArticle/`} className="btn-round btn-main add-article">مقال جديد</Link>
                 </div>
 
                 <Sep color='grey' />
@@ -26,19 +42,16 @@ export class Articles extends Component {
                     </thead>
 
                     <tbody>
-                        <tr>
-                            <td>رفعت تركيا، اليوم الأربعاء، حالة الطوارئ المعلنة في البلاد بعد الانقلاب العسكري</td>
-                            <td>12/12/2019</td>
-                            <td>1234</td>
-                            <td>2300</td>
-                        </tr>
-
-                        <tr>
-                            <td>رفعت تركيا، اليوم الأربعاء، حالة الطوارئ المعلنة في البلاد بعد الانقلاب العسكري</td>
-                            <td>12/12/2019</td>
-                            <td>1234</td>
-                            <td>2300</td>
-                        </tr>
+                        {
+                            this.state.articles.map(article => (
+                                <tr key={article._id}>
+                                    <td><Link to={`${this.props.path}/NewArticle/${article._id}`}> {article.title}</Link></td>
+                                    <td>{moment(article.date).format('DD/MM/YYYY')}</td>
+                                    <td>{article.views}</td>
+                                    <td>2300</td>
+                                </tr>
+                            ))
+                        }
                     </tbody>
                 </table>
             </div>

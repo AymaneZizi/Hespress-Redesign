@@ -70,6 +70,18 @@
     left: -6px;
 }
 
-.ArticleContainer {
-    padding-top:30px;
+
+.full-article-enter {
+  opacity: 0;
+}
+.full-article-enter-active {
+  opacity: 1;
+  transition: opacity 500ms;
+}
+.full-article-exit {
+  opacity: 1;
+}
+.full-article-exit-active {
+  opacity: 0;
+  transition: opacity 500ms, transform 500ms;
 }

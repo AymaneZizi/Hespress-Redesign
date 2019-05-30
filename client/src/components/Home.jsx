@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Category from "./Category";
+import PopularArticles from "./PopularArticles/PopularArticles";
 import Category1 from "./Category1/Category1";
 import Ad from "./Ad/Ad";
 import SocialMedia from "./SocialMedia/SocialMedia";
@@ -12,7 +12,7 @@ export class Home extends Component {
 
         <Ad style={{ height: 180 }} />
 
-        <Category style={{ margin: "20px 0" }} />
+        <PopularArticles style={{ margin: "20px 0" }} />
 
         <div className="row" style={{ margin: "20px 0" }}>
           <Category1 color="#b22947" category="السياسة" icon="" className="col-lg-9 col-md-12" />

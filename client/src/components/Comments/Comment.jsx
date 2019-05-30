@@ -34,7 +34,7 @@ export default class Comment extends Component {
                             </a>
 
                             <a href="#time">
-                                <span className="mbri-chat"></span>
+                                <span class="la la-keyboard-o"></span>
                                 <span>رد على التعليق</span>
                             </a>
                         </div>

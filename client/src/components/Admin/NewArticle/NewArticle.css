@@ -136,6 +136,11 @@ input::placeholder{
 
 .submit > button {
     width: 100%;
-    margin: 10px 0;
+    margin: 20px 10px;
+}
+
+button:disabled{
+    opacity: 0.8;
+    box-shadow: none;
 }
 

@@ -1,8 +1,14 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import './LoginForm.css'
 
 
-export default class LoginForm extends Component {
+class LoginForm extends Component {
+    static propTypes = {
+        isAuthenticated: PropTypes.bool,
+        error: PropTypes.object.isRequired
+    }
 
     render() {
         return (
@@ -22,3 +28,8 @@ export default class LoginForm extends Component {
     }
 }
 
+const mapStateToProps = state => ({
+    isAuthenticated: state.auth.isAuthenticated,
+    error: state.error
+})
+export default connect(mapStateToProps, {})(LoginForm)

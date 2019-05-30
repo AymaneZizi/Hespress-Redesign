@@ -1,40 +1,58 @@
 import React, { Component } from 'react';
+import { stateToHTML } from 'draft-js-export-html';
+import axios from 'axios';
+import { convertFromRaw } from 'draft-js'
+
 import Ad from "../../Ad/Ad"
 import './FullArticle.css'
 import Info from '../Info/Info'
 import Sep from '../../Sep';
 import Comments from '../../Comments/Comments'
-export default class FullArticle extends Component {
+import moment from 'moment';
+import countries from 'countries'
 
+export default class FullArticle extends Component {
+    state = {
+        title: '',
+        body: '',
+        img: '',
+        date: '',
+        country: '',
+        loading: true
+    }
+
+    componentDidMount = () => {
+
+        const id = this.props.match.params.id;
+        if (!id) return
+        axios.get('/api/articles/' + id)
+            .then(res => {
+                let { title, body, img, date, country } = res.data;
+
+                const contentState = convertFromRaw(JSON.parse(body))
+                body = stateToHTML(contentState);
+
+                this.setState({
+                    id,
+                    title,
+                    body,
+                    img,
+                    date,
+                    country,
+                    loading: false
+                })
+            })
+            .catch(err => alert(err));
+    }
     render() {
-        const article = {
-            id: '1',
-            img: '/Assets/images/erdogan.jpg',
-            title: 'رفعت تركيا، اليوم الأربعاء، حالة الطوارئ المعلنة في البلاد بعد الانقلاب العسكري',
-            time: 'الاحد 24 مارس',
-            text: `رفعت تركيا، اليوم الأربعاء، حالة الطوارئ المعلنة في البلاد بعد الانقلاب العسكري الفاشل في 15 يوليوز 2016 ، رغم أن الحكومة تخطط للإبقاء على العديد من إجراءاتها في ظل قانون جديد لمكافحة الإرهاب.
-وقد تم تمديد حالة الطوارئ السارية في البلاد منذ 20 يوليوز 2016، والتي تنتهي رسميا منتصف الليلة، سبع مرات منذ ذلك الحين، وذلك بفضل الأغلبية البرلمانية التي يحظى بها حزب العدالة والتنمية الذي يتصدره الرئيس التركي، رجب طيب أردوغان.
-وبررت الحكومة التركية هذا الوضع بمكافحة الإرهاب، خاصة ضد المؤيدين المزعومين لفتح الله غولن، الزعيم الإسلامي الذي تتهمه أنقرة بالوقوف وراء محاولة الإنقلاب. 
-وفي ظل حالة الطوارئ، التي سمحت للسلطات التركية بإصدار قرارات بقوة القانون وتقييد الحريات والحقوق الأساسية وفرض التزامات مالية وعمالية على المواطنين، علقت تركيا سريان الاتفاقية الأوروبية لحقوق الإنسان على أراضيها.
-كما قامت السلطات التركية، خلال العامين الماضيين، بعملية تطهير غير مسبوقة في هياكل الدولة والقطاع الخاص، تمثلت في إقالة 130 ألف موظف، بينهم قضاة وأفراد من الشرطة والجيش، دون أن يكون لهؤلاء الحق في الطعن على هذه القرارات أمام العدالة.
-وبالإضافة إلى ذلك، تم إغلاق العديد من وسائل الإعلام المقربة من غولن واليسار الكردي، ووفقا لمنظمة العفو الدولية تم إغلاق 1300 منظمة غير حكومية في تركيا. بينما عشرات الآلاف من الأشخاص محتجزون بتهم التورط في محولة الانقلاب.
-من ناحية أخرى فإن النظام الرئاسي الجديد، الذي دخل حيز التنفيذ بعد انتخابات 24 يونيو الماضي، والذي يمنح الرئيس سلطات تنفيذية واسعة، سيجعل أردوغان قادرا على الاستمرار في حكم البلاد بواسطة مراسيم رئاسية.
-ومن المقرر أن يناقش البرلمان التركي، غدا الخميس، مشروع قانون جديد لمكافحة الإرهاب، وهو ينص، من بين أمور أخرى، على منح الوزراء سلطة فصل الموظفين المشتبه في وجود صلات لهم بالإرهاب، في حين قد يحظر حكام الأقاليم دخول بعض الأفراد الذين يشكلون خطرا على الأمن العام إلى مناطق معينة.`,
-            country: 'المغرب',
-            author: {
-                id: '',
-                name: 'زكرياء الأزرق',
-                img: ' ',
-            }
-        }
+        let { id, title, body, img, date, country } = this.state;
 
         const imageStyle = {
-            background: `linear-gradient(0deg, rgb(255, 255, 255),rgba(255, 255, 255, 0),rgba(2, 173, 231, 0)), url(${article.img}) repeat`
+            background: `linear-gradient(0deg, rgb(255, 255, 255),rgba(255, 255, 255, 0),rgba(2, 173, 231, 0)), url(${img}) repeat`
         };
 
-        const text = article.text.split('\n').map((item, i) => {
-            return <p key={i}>{item}</p>;
-        })
+        date = moment(date).fromNow()
+
 
         return (
             <div className="container" >
@@ -43,21 +61,22 @@ export default class FullArticle extends Component {
                 <div className="row ArticleContainer">
                     <div className="col-lg-9 FullArticle">
                         <div className="img" style={imageStyle}></div>
-                        <h3 className='title'>{article.title}</h3>
+                        <h3 className='title'>{title}</h3>
                         <Info
-                            country={article.country}
-                            time={article.time}
+                            countryCode={country}
+                            time={date}
                         />
-                        <article>{text}</article>
+                        <article dangerouslySetInnerHTML={{ __html: body }}></article>
 
-                        <Comments article={article}></Comments>
+
+                        <Comments article={id}></Comments>
                     </div>
                     <div className="col-lg-3">
                         <div className="ArticleInformations">
                             <h3>معلومات متوفرة</h3>
                             <Sep color='gray' />
                             <h4>البلد</h4>
-                            <p>تركيا</p>
+                            <p>{country && countries.find(obj => obj.code === country).name_ar}</p>
 
                             <h4>شخصيات متعلقة</h4>
                             <p>رجب طيب اردوغان</p>

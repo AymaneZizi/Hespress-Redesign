@@ -29,7 +29,11 @@ const ArticleSchema = new Schema({
     },
     draft: {
         type: Boolean,
-        default: false
+        default: true
+    },
+    views: {
+        type: Number,
+        default: 0
     }
 })
 

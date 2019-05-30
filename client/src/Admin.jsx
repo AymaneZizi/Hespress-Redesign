@@ -17,8 +17,8 @@ export default class Admin extends Component {
                     <div>
                         <Header url={match.path} />
                         <Switch>
-                            <Route path={`${match.path}/NewArticle/`} component={NewArticle} />
-                            <Route path={`${match.path}/`} component={Home} />
+                            <Route path={`${match.path}/NewArticle/:id?`} component={NewArticle} />
+                            <Route path={`${match.path}`} component={Home} />
                         </Switch>
                     </div>
                 </Router>

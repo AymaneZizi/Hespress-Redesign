@@ -13,11 +13,11 @@ export default class Vote extends Component {
                     <Sep color='white'></Sep>
                     <p>كيف كان أداء المنتخب المغربي خلال كأس العالم ؟</p>
                     <div className='circles'>
-                        <div className="circle"><span className="lnr lnr-star"></span></div>
-                        <div className="circle"><span className="lnr lnr-star"></span></div>
-                        <div className="circle"><span className="lnr lnr-star"></span></div>
-                        <div className="circle"><span className="lnr lnr-star"></span></div>
-                        <div className="circle"><span className="lnr lnr-star"></span></div>
+                        <Star />
+                        <Star />
+                        <Star />
+                        <Star />
+                        <Star />
                     </div>
 
                     <button>تصويت</button>
@@ -26,3 +26,5 @@ export default class Vote extends Component {
         )
     }
 }
+
+const Star = () => <div className="circle"><span className="mbri-star"></span></div>

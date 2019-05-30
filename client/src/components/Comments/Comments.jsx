@@ -17,7 +17,7 @@ export default function Comments(props) {
             <Sep color='gray' />
             <div className='AddComment'>
                 <div className='commentIcon'>
-                    <span className="mbri-chat"></span>
+                    <i class="la la-keyboard-o"></i>
                 </div>
 
                 <div className="commentInput">
@@ -30,7 +30,9 @@ export default function Comments(props) {
 
             </div>
 
-            <Comment><Comment /></Comment>
+            <Comment />
+            <Comment />
+            <Comment />
         </div>
     )
 }

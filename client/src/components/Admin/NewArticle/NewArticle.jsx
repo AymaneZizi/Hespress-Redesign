@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
-import { Editor, EditorState, RichUtils, convertToRaw } from 'draft-js';
+import { Editor, EditorState, RichUtils, convertToRaw, convertFromRaw } from 'draft-js';
 import axios from 'axios'
 import 'draft-js/dist/Draft.css';
+import ArticleInfo from '../ArticleInformations/ArticleInformations'
 
 import './NewArticle.css'
-import Sep from 'components/Sep'
 import StylePanel from "../StylePanel/StylePanel"
 
 export class NewArticle extends Component {
@@ -14,29 +14,46 @@ export class NewArticle extends Component {
             editorState: EditorState.createEmpty(),
             id: '',
             title: '',
-            body: '',
             author: '',
-            imgName: '',
-            imgData: '',
             img: '',
             category: '',
             date: Date.now(),
-            country: ''
+            country: '',
+            body: '',
+            draft: true,
+            message: '',
         };
     }
 
-    //Create Article and Get the ID
-    componentDidMount = () => {
-        axios.post('/api/articles')
+    componentDidMount() {
+        const id = this.props.match.params.id;
+        if (!id) return
+        axios.get('/api/articles/edit/' + id)
             .then(res => {
-                console.log("id:", res.data._id)
-                this.setState({ id: res.data._id })
+
+                const { title, body, img, date, country, draft } = res.data;
+
+                const contentState = convertFromRaw(JSON.parse(body))
+                const editorState = contentState && EditorState.createWithContent(contentState);
+                this.setState({
+                    id,
+                    title,
+                    editorState,
+                    imgURL: img,
+                    date,
+                    country,
+                    draft
+                })
             })
+            .catch(err => alert(err));
     }
+
     //Handle Draft.js Editor State change
 
     onChangeEditor = (editorState) => {
-        this.setState({ editorState, body: JSON.stringify(convertToRaw(editorState.getCurrentContent())) });
+        this.setState({
+            editorState,
+        });
     }
 
     // Handle Keyboard shortcuts to style text in Draft.js Editor
@@ -52,9 +69,12 @@ export class NewArticle extends Component {
     //Handle Input change and update the state
 
     onChange = (e) => {
-        this.setState({
+        e.persist();
+
+        this.setState(prevState => ({
             [e.target.name]: e.target.value
-        })
+
+        }))
     }
 
     //hanldle style buttons click to style Draft.js text in the editor
@@ -62,105 +82,110 @@ export class NewArticle extends Component {
 
     //Handle choosing an image by the usr, 
 
-    handleChangeImage = (e) => {
-        const img = e.target.files[0]
+    handleChangeImage = async (e) => {
+        e.persist()
+        this.handleRemoveImage();
 
-        if (img) this.setState({ img: img, imgUrl: URL.createObjectURL(img) })
+        const img = e.target.files[0]
+        if (!img) return
+        const formData = new FormData();
+
+        formData.append('img', img);
+
+        axios.post('/api/images', formData, { headers: { 'Content-Type': 'multipart/form-data' } })
+            .then(res => {
+                console.log(res.data.img)
+                this.setState({
+                    img: res.data.img
+                })
+            })
+            .catch(err => this.setState({ message: "فشل في الاتصال" }))
     }
 
-    removeImage = () => {
-        this.setState({ img: null, imgUrl: null })
+    handleRemoveImage = async () => {
+        let { img } = this.state;
+        if (!img) return
+
+        axios.delete('/api/images', { data: { img: this.state.img } })
+            .then(res => {
+                this.setState({
+                    img: ''
+                })
+            })
+            .catch(err => this.setState({ message: "فشل في الاتصال" }))
     }
 
 
     //Handle Save 
 
     handleSave = async () => {
-        const formData = new FormData();
-        formData.append("id", this.state.id)
-        formData.append("title", this.state.title);
-        formData.append("body", this.state.body);
-        formData.append("date", this.state.date);
-        formData.append("country", this.state.country);
-        formData.append("imgName", this.state.imgName);
-        formData.append('img', this.state.img);
+        const body = JSON.stringify(convertToRaw(this.state.editorState.getCurrentContent()));
+        const { title, img, date, country, draft, id } = this.state;
+        const data = { title, img, date, body, country, draft, id }
+        axios.post('/api/articles/', data)
+            .then(res => {
+                this.setState({
+                    id: res.data._id,
+                    message: 'تم حفظ المقال'
+                })
+                return res;
+            })
+            .catch(err => {
+                this.setState({
+                    message: "لم يتم حفظ المقال"
+                })
+            })
+    }
 
-        try {
-            const res = await axios.put('/api/articles', formData, { headers: { 'Content-Type': 'multipart/form-data' } });
-            console.log(res.data)
-        } catch (err) {
-            console.log(err);
-        }
+    handlePublish = () => {
+        this.setState({ draft: false }, () => this.handleSave());
+    }
+
+    handleDraft = () => {
+        this.setState({ draft: true }, () => this.handleSave());
     }
 
 
     render() {
-
+        const { title, img, country, date, category, editorState, draft, message } = this.state;
+        const info = { img, country, date, category };
         return (
             <div className="container">
                 <div className="row">
                     <div className="col-lg-9">
-                        <input className='article-title' type='text' placeholder='عنوان المقال' name="title" onChange={this.onChange} />
+                        <input className='article-title' type='text' placeholder='عنوان المقال' name="title" value={title} onChange={this.onChange} />
 
                         <StylePanel onClick={this.HandleStyleButtonClick} />
 
                         <div className='article-text'>
-                            <Editor editorState={this.state.editorState} handleKeyCommand={this.handleKeyCommand} placeholder="نص المقال..." onChange={this.onChangeEditor} />
+                            <Editor editorState={editorState} handleKeyCommand={this.handleKeyCommand} placeholder="نص المقال..." onChange={this.onChangeEditor} />
                         </div>
 
                     </div>
 
                     <div className="col-lg-3">
-                        <div className='article-informations'>
-                            <h3>معلومات المقال</h3>
 
-                            <Sep color='grey' />
+                        <ArticleInfo
+                            handleChangeImage={this.handleChangeImage}
+                            handleRemoveImage={this.handleRemoveImage}
+                            onChange={this.onChange}
+                            {...info}
+                        />
 
-                            <div className="input img-input">
-                                <input type='file' value={this.state.img && ""} id="file" onChange={this.handleChangeImage} accept="image/*"></input>
-                                <div>
-                                    <label htmlFor="file">اختر صورة </label>
-                                    {(this.state.img) && <button onClick={this.removeImage}><span class="mbri-trash"></span></button>}
-                                </div>
-                                <img src={this.state.imgUrl} alt="" />
-                            </div>
-                            <div className='input'>
-                                <select name='country' onChange={this.onChange}>
-                                    <option value>البلد</option>
-                                    <option>المغرب</option>
-                                    <option>فرنسا</option>
-                                    <option>الجزائر</option>
-                                </select>
+                        <div className="input-group submit">
+                            {draft ?
+                                <button onClick={this.handlePublish} className="save btn-round btn-main">نشر</button> :
+                                <button onClick={this.handleDraft} className="save btn-round btn-main">مسودة</button>
+                            }
+                            <button onClick={this.handleSave} className="save btn-round">حفظ</button>
 
-                                <span className="mbri-arrow-down"></span>
-                            </div>
 
-                            <div className="input">
-                                <input style={{ paddingLeft: 30 }} type="date" name="date" onChange={this.onChange} placeholder='تاريخ النشر' />
-                                <span className="mbri-calendar"></span>
-                            </div>
-
-                            <div>
-                                <h5>شخصيات دات علاقة</h5>
-
-                                <div className='input'><input type='text' name="date" onChange={this.onChange} placeholder="أضف شخصية جديدة" /><span className="mbri-plus" /></div>
-                            </div>
-
-                            <div className="input-group">
-                                <h5>احداث دات علاقة</h5>
-                                <div className='input'><input type='text' placeholder="أضف حدثا جديدا" /><span className="mbri-plus" /></div>
-                            </div>
-
-                            <div className="input-group">
-                                <h5>اخبار دات علاقة</h5>
-                                <div className='input'><input type='text' onChange={this.onChange} placeholder="أضف خبرا جديدا" /><span className="mbri-plus" /></div>
-                            </div>
-
-                            <div className="input-group submit">
-                                <button onClick={this.handlePublish} className="save btn-round btn-main">نشر</button>
-                                <button onClick={this.handleSave} className="save btn-round">حفظ</button>
-                            </div>
                         </div>
+                        {draft ?
+                            <p>المقال في وضع مسودة</p> :
+                            <p>تم نشر المقال</p>
+                        }
+                        <p>{message}</p>
                     </div>
                 </div>
             </div>

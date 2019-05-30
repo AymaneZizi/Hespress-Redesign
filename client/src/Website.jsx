@@ -1,10 +1,13 @@
 import React, { Component } from "react";
+
 import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
-import indexRoutes from "./routes/Routes";
+import { CSSTransition } from 'react-transition-group'
+import './App.css'
+
+import routes from "./routes/Routes";
 import Header from "./components/Header/Header";
 import "./App.css";
 import Footer from './components/Footer/Footer'
-import Home from './components/Home'
 
 export default class WebSite extends Component {
     render() {
@@ -15,12 +18,15 @@ export default class WebSite extends Component {
                     <div>
                         <Header />
                         <Switch>
-                            <Route exact path='/' component={Home} />
-                            {indexRoutes.map((prop, key) => {
-                                return (
-                                    <Route exact path={prop.path} component={prop.component} key={key} />
-                                );
-                            })}
+                            {routes.map(({ path, Component }) => (
+                                <Route key={path} exact path={path}>
+                                    {({ match }) => (
+                                        <CSSTransition in={match != null} timeout={500} classNames="page" unmountOnExit>
+                                            <Component {...{ match }} />
+                                        </CSSTransition>
+                                    )}
+                                </Route>
+                            ))}
                         </Switch>
 
                         <Footer />
