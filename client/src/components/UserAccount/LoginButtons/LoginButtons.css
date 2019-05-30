@@ -1,0 +1,19 @@
+
+
+.sign-up:hover {
+  opacity: 0.8;
+  transition: opacity 1s;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.158);
+  transition: opacity 1s, box-shadow 0.1s;
+  color: white;
+}
+
+.login:hover {
+  border: none;
+  background-image: linear-gradient(
+    to right,
+    rgb(102, 27, 164),
+    rgb(27, 195, 215)
+  );
+  color: white;
+}

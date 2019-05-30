@@ -1,0 +1,46 @@
+.Articles > .head {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.ArticleTable{
+    width: 100%;
+    border-collapse: collapse;
+    margin: 30px 0;
+    box-shadow: 0 0 2px rgb(0, 0, 0 , 0.1);
+}
+
+.ArticleTable > thead {
+    background: #808080;
+    color: white;
+    font-family: "cairo bold";
+    border-radius: 2px 2px 0 0;
+}
+
+.ArticleTable > thead td {
+    padding: 10px 10px;
+}
+
+.add-article {
+    line-height: 30px;
+    font-size: 12px;
+}
+
+.add-article:hover{
+    color: white;
+
+}
+
+.ArticleTable > tbody  td {
+    padding:  20px 10px;
+}
+
+.ArticleTable > tbody > tr:nth-child(2n) {
+    background: rgb(240, 240, 240)
+}
+
+.ArticleTable > tbody > tr:nth-child(2n+1) {
+    background: white;
+}

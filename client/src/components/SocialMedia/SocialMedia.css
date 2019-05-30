@@ -1,0 +1,19 @@
+.SocialMedia{
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    padding: 10px;
+    height: 100%;
+}
+
+.SocialMedia > h3{
+    margin: 5px 0;
+    text-align: center;
+    font-size: 17px;
+}
+
+.sep{
+    height: 4px;
+    width: 50px;
+    background: grey;
+    margin: 10px auto;
+}

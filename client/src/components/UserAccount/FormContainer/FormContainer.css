@@ -1,0 +1,33 @@
+.loginform {
+  position: absolute;
+  width: 400px;
+  top: -5px;
+  left: -20px;
+  box-shadow: 0 0 10px rgb(0,0,0, 0.2);
+  background: white;
+  padding: 10px;
+  border-radius: 4px;
+  z-index: 999;
+}
+
+.hide {
+  transform: scale(0,0);
+}
+
+.show {
+  transform: scale(1,1);
+  transform: opacity(1);
+  transition: all .2s ease-in-out;
+  transition-duration: .1s;
+  transform-origin: left top;
+}
+
+
+
+.sign-up {
+  margin-left: 10px;
+}
+
+.login {
+  margin-right: 10px;
+}

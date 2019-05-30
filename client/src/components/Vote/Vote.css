@@ -1,0 +1,61 @@
+.Vote{
+    background-color: #b22947;
+    height: 100%;
+    border-radius: 4px;
+    color: white;
+    text-align: center;
+    padding: 10px 30px;
+    padding-bottom: 50px;
+    position: relative;
+}
+
+.Vote > h3 {
+    text-align: center;
+    padding: 5px 0;
+    margin: 0;
+}
+
+.circles {
+    display: flex;
+    margin: 30px;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.circle{
+    background: white;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    color: grey;
+}
+
+.circle:hover {
+    color:#ffce31;
+}
+
+.Vote > button {
+    background: rgba(255, 255, 255);
+    border: none;
+    color : rgb(114, 114, 114);
+    line-height: 40px;
+    border-radius: 25px;
+    font-family: inherit;
+    font-size: 16px;
+    padding: 0 40px;
+    margin-top: 30px;    
+}
+
+.Vote > button:hover {
+    background: rgba(255, 255, 255, 1);
+}
+
+.bg{
+    position: absolute;
+    background: url(/Assets/images/states.svg) no-repeat;
+    background-size: 100%;
+    left: 10px;
+    width: 80%;
+    height: 100%;
+    top: 100px;
+}

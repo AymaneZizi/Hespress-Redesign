@@ -1,0 +1,41 @@
+.UserAccount {
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.login-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* height: 50px; */
+  /* width: 50px; */
+  padding-left: 6px!important;
+  padding-right: 20px!important;
+  /* border-radius: 50%!important; */
+}
+
+.login-button > span {
+  font-size: 29px!important;
+  margin-right: 10px;
+}
+
+.formContainer-enter {
+  opacity: 0;
+  scale: 0;
+}
+.formContainer-enter-active {
+  opacity: 1;
+  scale: 1;
+  transition: opacity 200ms, scale 200ms;
+}
+.formContainer-exit {
+  opacity: 1;
+  scale: 1;
+}
+.formContainer-exit-active {
+  opacity: 0;
+  scale: 0;
+  transition: opacity 200ms, scale 200ms;
+}

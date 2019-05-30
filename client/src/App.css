@@ -1,0 +1,123 @@
+html {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  color: #666666;
+  font-family: "Cairo Light";
+  direction: rtl;
+  text-align: right;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+@media (min-width: 1600px) {
+  .container {
+    max-width: 1440px;
+  }
+}
+
+/* Buttons */
+
+.btn-round {
+  border-radius: 20px;
+  padding: 0px 16px;
+  line-height: 40px;
+  font-family: "Cairo Regular";
+  font-size: 0.9rem;
+  box-shadow: 0 1px 3px rgb(0, 0, 0, 0.2);
+  background: rgb(240, 240, 240);
+}
+
+.btn-round:active {
+  box-shadow: none;
+}
+
+.btn-main {
+  background: linear-gradient(to right, rgb(102, 27, 164), rgb(27, 195, 215));
+  color: white;
+}
+
+ul {
+  margin: 0px;
+  padding: 0px;
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  font-family: "Cairo Regular";
+  color: inherit;
+}
+
+a:hover {
+  color: inherit;
+  text-decoration: underline;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "cairo bold";
+}
+
+button {
+    margin: 0;
+    padding: 0;
+    background: none;
+    border: none;
+    font-family: inherit;
+    color: inherit;
+}
+
+button:focus {
+    outline: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+}
+
+
+input{
+  width: 100%;
+  line-height: 40px;
+  border: 2px solid rgb(230, 230, 230);
+  color: grey;
+  font-size: 14px;
+  font-family: inherit;
+  padding: 0 10px;
+  border-radius: 2px;
+  background-size: 20px 20px;
+  background-position: 10px center;
+  background-repeat: no-repeat;
+}
+
+.page-enter {
+  opacity: 0;
+  scale: 0;
+}
+.page-enter-active {
+  opacity: 1;
+  scale: 1;
+  transition: opacity 200ms, scale 200ms;
+}
+.page-exit {
+  opacity: 1;
+  scale: 1;
+}
+.page-exit-active {
+  opacity: 0;
+  scale: 0;
+  transition: opacity 200ms, scale 200ms;
+}

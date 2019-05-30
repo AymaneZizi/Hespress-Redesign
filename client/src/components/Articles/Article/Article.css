@@ -1,0 +1,43 @@
+.article {
+  border: 1px solid #eceaea;
+  margin: 20px 0;
+  border-radius: 2px;
+  position: relative;
+}
+
+.article > .img {
+  width: 100%;
+  height: 350px;
+  border-radius: 2px;
+  background-size: cover !important;
+}
+
+.article > .head {
+  padding: 0 10px 10px 10px;
+  position: absolute;
+  bottom: 0;
+}
+
+.article > .head h3 {
+  margin: 0;
+}
+
+.smallArticle {
+  display: flex;
+  border: 1px solid #eceaea;
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 2px;
+}
+
+.smallArticle > .img {
+  height: 100px;
+  min-width: 120px;
+  margin-left: 10px;
+  border-radius: 2px;
+  background-size: cover !important;
+}
+
+.smallArticle > .head h3 {
+  margin: 0;
+}

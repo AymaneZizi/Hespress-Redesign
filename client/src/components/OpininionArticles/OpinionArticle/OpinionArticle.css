@@ -1,0 +1,56 @@
+.OpinionArticle {
+  border: 1px solid #eceaea;
+  margin: 20px 0;
+  padding: 10px;
+  border-radius: 2px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  height: 400px;
+}
+
+.OpinionArticle > .img {
+  width: 100%;
+  height: 100%;
+  border-radius: 2px;
+  background-size: cover !important;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -9999;
+}
+
+.OpinionArticle > .head {
+  text-align: center;
+  margin: 10px 0;
+}
+
+.AuthorInfo {
+  display: flex;
+  flex-direction: row;
+}
+
+.separator {
+  margin: 5px 0;
+}
+
+.AuthorInfo h3 {
+  margin: 0;
+  margin-bottom: 5px;
+  color: rgb(75, 75, 75);
+  font-size: 17px;
+}
+
+.AuthorInfo  p{
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+.AuthorInfo > .imgAuthor {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background-size: cover !important;
+  margin-left: 10px;
+}

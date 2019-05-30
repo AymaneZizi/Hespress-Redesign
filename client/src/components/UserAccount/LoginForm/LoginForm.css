@@ -1,0 +1,41 @@
+
+
+.formgroup{
+  margin: 10px 0;
+}
+
+.loginform .login, .loginform  .sign-up{
+  height: 40px;
+  margin-top : 10px;
+  margin-bottom: 20px;
+}
+
+.loginform > .login {
+  border: none;
+  box-shadow: none;
+}
+
+
+.email {
+  background-image: url("/Assets/images/SVG/profile.svg");
+}
+
+
+.password {
+  background-image: url("/Assets/images/SVG/password.svg");
+}
+
+.formgroup > button {
+  margin-top: 10px;
+  height: 40px;
+  text-align: center;
+  background: rgb(230, 230,230);
+  width: 100%;
+  font-size: 14px;
+  border-radius: 2px;
+  box-shadow: 0px 2px 2px rgb(0,0,0, 0.2);
+}
+
+.formgroup > button:active {
+  box-shadow: none;
+}
