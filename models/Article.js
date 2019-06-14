@@ -14,14 +14,13 @@ const ArticleSchema = new Schema({
     },
     author: {
         type: ObjectId,
-        ref: 'Author'
+        ref: 'User'
     },
     img: {
         type: String
     },
     category: {
-        type: ObjectId,
-        ref: 'Category'
+        type: [{ type: ObjectId, ref: 'Category' }],
     },
     date: {
         type: Date,

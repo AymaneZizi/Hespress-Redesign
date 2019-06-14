@@ -2,13 +2,33 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { register } from 'actions/authActions.js'
+import { register } from 'actions/authActions'
+import { clearErrors } from 'actions/errorActions'
+import Input from '../../Input/Input'
 import './SignUpForm.css'
 
 class SignUpForm extends Component {
     state = {
         email: '',
-        password: ''
+        password: '',
+        confirmPassword: ''
+    }
+
+    componentDidMount() {
+        this.props.clearErrors();
+    }
+
+    componentDidUpdate(prevProps) {
+        const { error } = this.props;
+        if (error !== prevProps.error) {
+            // Check for register error
+            if (error.id === 'REGISTER_FAIL') {
+                if (error.msg.msg === 'User already exists');
+                this.setState({ msg: 'يوجد حساب اخر بهذا البريد الالكتروني' });
+            } else {
+                this.setState({ msg: null });
+            }
+        }
     }
 
     static propTypes = {
@@ -24,25 +44,58 @@ class SignUpForm extends Component {
 
     onSubmit = (e) => {
         e.preventDefault();
-        const { email, password } = this.state;
+        const { name, email, password, confirmPassword } = this.state;
+
+        if (password !== confirmPassword) {
+            this.setState({ msg: 'كلمات السر غير متطابقة' })
+            return
+        }
         //create user
-        const user = { email, password }
+        const user = { name, email, password }
         this.props.register(user);
     }
     render() {
         return (
             <form onSubmit={this.onSubmit}>
+                {
+                    this.state.msg && <div className="error">{this.state.msg}</div>
+                }
 
-                <div className='formgroup'>
-                    <input type='text' placeholder="البريد الالكتروني" className="email" onChange={this.onChange} name='email' />
-                </div>
-                <div className='formgroup'>
-                    <input type='password' placeholder="كلمة المرور" className="password" onChange={this.onChange} name='password' />
-                </div>
+                <Input
+                    type="text"
+                    name="name"
+                    icon="user"
+                    onChange={this.onChange}
+                    value={this.state.name}
+                    placeholder='الإسم الكامل'
+                />
 
-                <div className='formgroup'>
-                    <input type='password' placeholder="تأكيد كلمة المرور" className="password" name='password-confirm' />
-                </div>
+                <Input
+                    type="email"
+                    name="email"
+                    icon="envelope"
+                    onChange={this.onChange}
+                    value={this.state.email}
+                    placeholder='الإسم الالكتروني'
+                />
+
+                <Input
+                    type="password"
+                    name="password"
+                    icon="lock"
+                    onChange={this.onChange}
+                    value={this.state.password}
+                    placeholder='كلمةالمرور'
+                />
+
+                <Input
+                    type="password"
+                    name="confirmPassword"
+                    icon="lock"
+                    onChange={this.onChange}
+                    value={this.state.confirmPassword}
+                    placeholder='تأكيد كلمةالمرور'
+                />
 
                 <div className='formgroup'>
                     <button className=''>تأكيد الحساب</button>
@@ -57,5 +110,5 @@ const mapStateToProps = state => ({
     error: state.error
 })
 
-export default connect(mapStateToProps, { register })(SignUpForm)
+export default connect(mapStateToProps, { register, clearErrors })(SignUpForm)
 

@@ -16,15 +16,6 @@
 }
 
 
-.email {
-  background-image: url("/Assets/images/SVG/profile.svg");
-}
-
-
-.password {
-  background-image: url("/Assets/images/SVG/password.svg");
-}
-
 .formgroup > button {
   margin-top: 10px;
   height: 40px;

@@ -10,7 +10,7 @@ export default class AdminHeader extends Component {
                 <div className="container">
                     <div className="row">
                         <div className="col-xl-2 col-lg-3 col-xs-2">
-                            <Link to={`${this.props.url}`}><img src='/Assets/images/SVG/logo-admin.svg' alt="hespres" className="logo" /></Link>
+                            <Link to={`${this.props.url}`}><div src='/Assets/images/SVG/logo-admin.svg' alt="hespres" className="logo">logo-admin </div></Link>
                         </div>
                         <Menu className="col-xl-8 col-lg-5 col-xs-8" />
                         <UserAccount className="col-xl-2 col-lg-4 col-xs-0" />

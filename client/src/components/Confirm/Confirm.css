@@ -1,0 +1,13 @@
+.confirm >h3 {
+    border-bottom: 2px solid gray;
+    margin-bottom: 10px;
+}
+
+.confirm > .message {
+    text-align: right;
+    padding: 10px 0;
+}
+
+.confirm-buttons {
+    padding: 10px 0;
+}

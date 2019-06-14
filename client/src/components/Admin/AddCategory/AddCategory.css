@@ -1,0 +1,16 @@
+
+[class^="col"] {
+    position: static;
+}
+
+.circle-picker {
+    width: 100%;
+    justify-content: center;
+    margin: 0px 0!important;
+    padding-top: 20px;
+    padding-bottom: 10px;
+}
+
+.AddCategory > h3 {
+    border-bottom: 1px solid gray;
+}

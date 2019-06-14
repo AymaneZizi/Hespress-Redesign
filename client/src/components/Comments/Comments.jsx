@@ -1,13 +1,26 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+
 import './Comments.css';
 import Sep from '../FullWidthSep'
-import Textarea from 'react-textarea-autosize';
 import Comment from './Comment'
+import AddComment from './AddComment'
 
 export default function Comments(props) {
-    const ButtonStyle = {
-        margin: '10px 0 0 5px'
+    const [comments, setComments] = useState([])
+
+    useEffect(() => {
+        if (!props.article) return
+        axios.get(`/api/articles/${props.article}/comments`)
+            .then(res => setComments(res.data))
+    }, [props])
+
+
+    const addArticle = (comment) => {
+        console.log(comment)
+        setComments([comment, ...comments])
     }
+
     return (
         <div className="Comments">
             <div className="head">
@@ -15,24 +28,10 @@ export default function Comments(props) {
                 <span>التعليقات تعبر فقط عن رأي اصحابها</span>
             </div>
             <Sep color='gray' />
-            <div className='AddComment'>
-                <div className='commentIcon'>
-                    <i class="la la-keyboard-o"></i>
-                </div>
+            <AddComment article={props.article} addArticle={addArticle} />
 
-                <div className="commentInput">
-                    <div className='textarea'>
-                        <Textarea placeholder="شارك بالنقاش، اضف تعليقا" />
-                    </div>
-                    <button style={ButtonStyle} className="btn-round btn-main" >نشر</button>
-                    <button style={ButtonStyle} className="btn-round">حفظ كمسودة</button>
-                </div>
 
-            </div>
-
-            <Comment />
-            <Comment />
-            <Comment />
+            {comments.map(comment => <Comment key={comment._id} {...comment} />)}
         </div>
     )
 }

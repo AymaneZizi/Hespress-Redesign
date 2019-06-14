@@ -25,6 +25,6 @@ export default function Info(props) {
 }
 
 Info.propTypes = {
-  country: PropTypes.string.isRequired,
+  countryCode: PropTypes.string.isRequired,
   time: PropTypes.string.isRequired
 };

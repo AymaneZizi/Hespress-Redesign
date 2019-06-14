@@ -8,7 +8,7 @@ export default class Vote extends Component {
             <div className={this.props.className}>
                 <div className='Vote'>
                     {/* <div className='bg' /> */}
-                    <h3>استطلاع هسبريس</h3>
+                    <h3>استطلاع</h3>
                     {/* <span className='sep1' ></span> */}
                     <Sep color='white'></Sep>
                     <p>كيف كان أداء المنتخب المغربي خلال كأس العالم ؟</p>

@@ -13,9 +13,9 @@ export class Category1 extends Component {
   }
 
   componentDidMount() {
-    Axios.get('/api/articles')
+    Axios.get(`api/categories/${this.props.category}/articles`)
       .then(res => this.setState({ articles: res.data, loading: false }))
-      .catch(err => alert(err))
+      .catch(err => console.log(err))
   }
 
   render() {

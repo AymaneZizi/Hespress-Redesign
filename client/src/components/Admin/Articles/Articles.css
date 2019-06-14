@@ -44,3 +44,28 @@
 .ArticleTable > tbody > tr:nth-child(2n+1) {
     background: white;
 }
+.ArticleTable .buttons {
+    display: flex;
+    align-items: center;
+    width: 100px;
+    justify-content: flex-end
+}
+.ArticleTable .buttons > * {
+    font-size: 20px;
+    width: 30px;
+    height: 30px;
+    background: white;
+    margin: 0 5px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 4px rgb(0, 0, 0 , 0.1);
+}
+
+ .buttons > *:hover{
+    text-decoration: none;
+    transition: background-color 200ms ease-out;
+    background-color: rgb(245, 245, 245);
+    cursor: pointer;
+ }

@@ -1,0 +1,25 @@
+
+.Input  {
+    display: flex;
+    border-radius: 2px;
+    align-items: center;
+    margin: 10px 0;
+    position: relative;
+    color: rgb(146, 146, 146);
+}
+
+.Input > span {
+    position: absolute;
+    left: 5px;
+    top: 12px;
+    color: inherit;
+    font-size: 20px;
+}
+
+.Input-group{
+    margin: 10px 0;
+}
+
+input::placeholder{
+    color: inherit;
+}

@@ -10,6 +10,7 @@
     "draft-js-export-html": "^1.3.3",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
+    "react-color": "^2.17.3",
     "react-dom": "^16.8.6",
     "react-palette": "^0.1.3",
     "react-redux": "^7.0.3",

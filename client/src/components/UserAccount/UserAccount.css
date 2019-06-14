@@ -1,8 +1,9 @@
 .UserAccount {
-  position: relative;
+  position: relative!important;
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  z-index: 999;
 }
 
 .login-button {
@@ -38,4 +39,58 @@
   opacity: 0;
   scale: 0;
   transition: opacity 200ms, scale 200ms;
+}
+
+.profile {
+  display: flex;
+  align-items: center;
+  padding-left: 2px;
+  z-index: 999;
+}
+
+.profile-img {
+  width: 36px;
+  height: 36px;
+  border-radius: 20px;
+  background: white;
+  border: 2px white;
+  margin-right: 10px;
+}
+
+.profile-panel {
+    position: absolute;
+    width: 200px;
+    background: white;
+    padding: 5px;
+    padding-top: 60px;
+    box-shadow: 0 0 10px rgb(0,0,0,.1);
+    top: 0;
+    left: 0;
+    border-radius: 2px;
+    z-index: 99;
+}
+
+.profile-panel > .link {
+  font-family: 'Cairo Regular';
+  padding: 5px 10px;
+  display: flex;
+  align-items: center;
+  font-size: 15px;
+  width: 100%;
+  color: gray;
+  font-weight: normal;
+}
+
+.profile-panel > .link:hover {
+  text-decoration: none;
+  color: rgb(77, 77, 77);
+}
+
+.profile-panel > .link > i {
+  margin-left: 10px;
+  font-size: 20px;
+}
+
+.signout {
+  border-top: 1px solid #e7e7e7;
 }

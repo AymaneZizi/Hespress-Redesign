@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 import { Editor, EditorState, RichUtils, convertToRaw, convertFromRaw } from 'draft-js';
 import axios from 'axios'
-import 'draft-js/dist/Draft.css';
-import ArticleInfo from '../ArticleInformations/ArticleInformations'
 
-import './NewArticle.css'
+import ArticleInfo from '../ArticleInformations/ArticleInformations'
 import StylePanel from "../StylePanel/StylePanel"
 
+import './NewArticle.css'
+import 'draft-js/dist/Draft.css';
 export class NewArticle extends Component {
     constructor(props) {
         super(props);
@@ -16,7 +16,7 @@ export class NewArticle extends Component {
             title: '',
             author: '',
             img: '',
-            category: '',
+            category: [],
             date: Date.now(),
             country: '',
             body: '',
@@ -31,15 +31,16 @@ export class NewArticle extends Component {
         axios.get('/api/articles/edit/' + id)
             .then(res => {
 
-                const { title, body, img, date, country, draft } = res.data;
+                const { title, body, img, date, country, draft, category } = res.data;
 
                 const contentState = convertFromRaw(JSON.parse(body))
                 const editorState = contentState && EditorState.createWithContent(contentState);
                 this.setState({
                     id,
+                    category,
                     title,
                     editorState,
-                    imgURL: img,
+                    img,
                     date,
                     country,
                     draft
@@ -73,8 +74,13 @@ export class NewArticle extends Component {
 
         this.setState(prevState => ({
             [e.target.name]: e.target.value
-
         }))
+    }
+
+
+    onChangeMultipe = (name, data) => {
+        console.log(data)
+        this.setState({ [name]: data })
     }
 
     //hanldle style buttons click to style Draft.js text in the editor
@@ -99,7 +105,7 @@ export class NewArticle extends Component {
                     img: res.data.img
                 })
             })
-            .catch(err => this.setState({ message: "فشل في الاتصال" }))
+            .catch(err => this.message("فشل في الاتصال"))
     }
 
     handleRemoveImage = async () => {
@@ -112,7 +118,14 @@ export class NewArticle extends Component {
                     img: ''
                 })
             })
-            .catch(err => this.setState({ message: "فشل في الاتصال" }))
+            .catch(err => this.message("فشل في الاتصال"))
+    }
+
+    message = (msg) => {
+        this.setState({ message: msg })
+        setTimeout(() => {
+            this.setState({ message: '' })
+        }, 1000)
     }
 
 
@@ -120,20 +133,18 @@ export class NewArticle extends Component {
 
     handleSave = async () => {
         const body = JSON.stringify(convertToRaw(this.state.editorState.getCurrentContent()));
-        const { title, img, date, country, draft, id } = this.state;
-        const data = { title, img, date, body, country, draft, id }
+        const { title, img, date, country, draft, id, category } = this.state;
+        const data = { title, img, date, body, country, draft, id, category }
         axios.post('/api/articles/', data)
             .then(res => {
                 this.setState({
                     id: res.data._id,
-                    message: 'تم حفظ المقال'
                 })
+                this.message('تم حفظ المقال')
                 return res;
             })
             .catch(err => {
-                this.setState({
-                    message: "لم يتم حفظ المقال"
-                })
+                this.message("لم يتم حفظ المقال");
             })
     }
 
@@ -169,28 +180,34 @@ export class NewArticle extends Component {
                             handleChangeImage={this.handleChangeImage}
                             handleRemoveImage={this.handleRemoveImage}
                             onChange={this.onChange}
+                            onChangeMultipe={this.onChangeMultipe}
                             {...info}
                         />
 
-                        <div className="input-group submit">
-                            {draft ?
-                                <button onClick={this.handlePublish} className="save btn-round btn-main">نشر</button> :
-                                <button onClick={this.handleDraft} className="save btn-round btn-main">مسودة</button>
-                            }
-                            <button onClick={this.handleSave} className="save btn-round">حفظ</button>
+                        <div className="panel">
 
+                            <div className="submit">
+                                {draft ?
+                                    <button onClick={this.handlePublish} className="save btn-round btn-main">نشر</button> :
+                                    <button onClick={this.handleDraft} className="save btn-round btn-main">مسودة</button>
+                                }
+                                <button onClick={this.handleSave} className="save btn-round">حفظ</button>
+                            </div>
+
+                            <div className="message">
+                                <div>{draft ? "المقال في وضع مسودة" : "تم نشر المقال"}</div>
+                                <div>{message}</div>
+                            </div>
 
                         </div>
-                        {draft ?
-                            <p>المقال في وضع مسودة</p> :
-                            <p>تم نشر المقال</p>
-                        }
-                        <p>{message}</p>
+
                     </div>
                 </div>
             </div>
         )
     }
 }
+
+
 
 export default NewArticle

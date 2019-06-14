@@ -16,7 +16,9 @@
     background: rgb(240, 240, 240);
     padding: 10px;
     border-radius: 4px;
-    font-size: 15px;
+    font-size: 15px;    
+    margin-right: 5px;
+
 }
 
 .text > p {
@@ -35,9 +37,7 @@
     border: none;
 }
 
-.replays{
-    margin-right: 5px;
-}
+
 .rating > .lline {
     width: 2px;
     height: 100%;

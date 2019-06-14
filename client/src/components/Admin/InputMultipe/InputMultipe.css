@@ -1,0 +1,56 @@
+.selected > div {
+    border: 1px solid rgb(200,200,200);
+    font-size: 14px;
+    margin: 5px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: rgb(150, 150, 150);
+    padding: 5px;
+    border-radius: 2px;
+}
+
+
+.selected > div:hover{
+    border: 1px solid rgb(200,200,200);
+    color: rgb(130, 130, 130);
+    transition: background-color 200ms ease;
+    background-color: rgb(250, 250, 250)
+}
+
+
+.selected i:hover {
+    color: rgb(80, 80, 80);
+}
+
+.suggested {
+    box-shadow: 0 0 5px rgb(0,0,0, 0.1);
+    color: rgb(185, 185, 185);
+    border-radius: 2px;
+    font-size: 14px;
+}
+.suggested > div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #e9e9e9;
+    padding: 5px;
+    transition: color 200ms ease;
+}
+
+.suggested > div:hover{
+    color: rgb(120, 120, 120);
+    transition: color 200ms ease;
+
+}
+
+.suggested i , .selected i{
+    color: rgb(200, 200, 200);
+    transition: color 200ms ease;
+    font-size: 18px;
+}
+
+.suggested i:hover {
+    color: rgb(80, 80, 80);
+    transition: color 200ms ease;
+}

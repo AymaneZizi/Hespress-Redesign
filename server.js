@@ -9,10 +9,11 @@ const app = express();
 
 //to be moved
 const articles = require('./routes/api/articles')
-const authors = require('./routes/api/authors')
 const users = require('./routes/api/users')
 const auth = require('./routes/api/auth')
 const images = require('./routes/api/images')
+const categories = require('./routes/api/categories')
+const comments = require('./routes/api/comments')
 
 app.use(express.json());
 
@@ -28,10 +29,13 @@ mongoose.set('useFindAndModify', false);
 
 
 app.use('/api/articles', articles);
-app.use('/api/authors', authors);
 app.use('/api/users', users);
 app.use('/api/auth', auth);
 app.use('/api/images', images);
+app.use('/api/categories', categories);
+app.use('/api/comments', comments);
+
+
 
 
 

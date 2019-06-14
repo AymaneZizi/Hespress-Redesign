@@ -47,9 +47,9 @@
 .input > span {
     position: absolute;
     left: 5px;
-    top: 15px;
+    top: 12px;
     color: inherit;
-    font-size: 15px;
+    font-size: 18px;
 }
 
 .input-group{
@@ -129,14 +129,26 @@ input::placeholder{
     z-index: -99;
 }
 
+.panel {
+    margin: 30px 0;
+    padding: 20px;
+    border-radius: 4px;
+    box-shadow: 0 0px 10px rgb(0,0,0,0.1);
+    backface-visibility: white;
+}
+
+.panel > div {
+    padding: 10px 0;
+}
+
 .submit {
     display: flex;
-    justify-content: stretch;
+    justify-content: stretch;   
 }
 
 .submit > button {
     width: 100%;
-    margin: 20px 10px;
+    margin: 0 10px;
 }
 
 button:disabled{
@@ -144,3 +156,8 @@ button:disabled{
     box-shadow: none;
 }
 
+.message {
+    font-size: 15px;
+    text-align: center;
+    margin: 0;
+}

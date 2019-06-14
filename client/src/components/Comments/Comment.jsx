@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import moment from 'moment'
 import './Comment.css';
 
 export default class Comment extends Component {
@@ -9,6 +10,7 @@ export default class Comment extends Component {
         }
     }
     render() {
+        const { text, user, date } = this.props;
         return (
             <div className="comment">
                 <div className="rating">
@@ -17,31 +19,28 @@ export default class Comment extends Component {
                     <button href='#vote-down'><img src="/Assets/images/SVG/vote-down.svg" alt='vote-up' /></button>
                     <div className="lline"></div>
                 </div>
-                <div className="replays">
-                    <div className="text">
-                        <p>
-                            ومن المقرر أن يناقش البرلمان التركي، غدا الخميس، مشروع قانون جديد لمكافحة الإرهاب، وهو ينص، من بين أمور أخرى، على منح الوزراء سلطة فصل الموظفين المشتبه في وجود صلات لهم بالإرهاب
-                        </p>
-                        <div className="commentInfo">
-                            <a href="#author">
-                                <span className="mbri-user"></span>
-                                <span>زكرياء الأزرق</span>
-                            </a>
+                <div className="text">
+                    <p>
+                        {text}
+                    </p>
+                    <div className="commentInfo">
+                        <a href="#author">
+                            <span className="mbri-user"></span>
+                            <span>{user.name}</span>
+                        </a>
 
-                            <a href="#time">
-                                <span className="mbri-clock"></span>
-                                <span>قبل 4 ساعات</span>
-                            </a>
+                        <a href="#time">
+                            <span className="mbri-clock"></span>
+                            <span>{moment(date).fromNow()}</span>
+                        </a>
 
-                            <a href="#time">
-                                <span class="la la-keyboard-o"></span>
-                                <span>رد على التعليق</span>
-                            </a>
-                        </div>
+                        <a href="#time">
+                            <span className="la la-keyboard-o"></span>
+                            <span>رد على التعليق</span>
+                        </a>
                     </div>
-
-                    {this.props.children}
                 </div>
+
             </div >
         )
     }

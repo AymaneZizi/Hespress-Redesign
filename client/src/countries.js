@@ -3,6 +3,7 @@ const countries = [
     {
         code: 'AC',
         name: 'Ascension Island',
+        name_ar: 'ايسلندا',
         emoji: '🇦🇨'
     },
     {
