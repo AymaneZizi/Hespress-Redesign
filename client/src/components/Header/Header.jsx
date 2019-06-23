@@ -13,7 +13,7 @@ export default class Header extends Component {
         <div className="container">
           <div className="row">
             <div className="col-xl-2 col-lg-3 col-xs-2 logo-container">
-              <Link to="/"><div src='/Assets/images/SVG/logo.svg' alt="hespres" className="logo"> logo</div></Link>
+              <Link to="/"><img src='/Assets/images/SVG/logo.svg' alt="hespres" className="logo" /></Link>
             </div>
             <Menu className="col-xl-8 col-lg-5 col-xs-8" />
             <UserAccount className="col-xl-2 col-lg-4 col-xs-0" />

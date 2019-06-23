@@ -1,29 +1,23 @@
-import React, { Component } from "react";
-import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
+import React from "react";
+import { Route } from "react-router-dom";
 import Header from './components/Header/AdminHeader'
 import "./App.css";
 
 import Home from './components/Admin/Home';
 import NewArticle from "./components/Admin/NewArticle/NewArticle";
 
-export default class Admin extends Component {
-    render() {
-        const { match } = this.props
+export default function Admin({ match }) {
 
-        return (
-            <div className="App">
+    const parent = match.path
+    return (
+        <div className="App">
 
-                <Router>
-                    <div>
-                        <Header url={match.path} />
-                        <Switch>
-                            <Route path={`${match.path}/NewArticle/:id?`} component={NewArticle} />
-                            <Route path={`${match.path}`} component={Home} />
-                        </Switch>
-                    </div>
-                </Router>
-
+            <div>
+                <Header url={parent} />
+                <Route path={`${parent}/NewArticle/:id?`} component={NewArticle} />
+                <Route exact path={`${parent}`} component={Home} />
             </div>
-        );
-    }
+
+        </div>
+    );
 }

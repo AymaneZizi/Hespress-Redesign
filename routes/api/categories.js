@@ -53,7 +53,6 @@ router.post('/', (req, res) => {
 
 
 router.get('/:name/articles', (req, res) => {
-    console.log(req.params.name)
     Category.findOne({ name: req.params.name })
         .then(Category => {
             Article.find({ category: Category._id })

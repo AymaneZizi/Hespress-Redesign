@@ -12,6 +12,10 @@
     margin: 0;
 }
 
+.FullArticle {
+    margin-top: 30px;
+}
+
 .FullArticle > article{
     margin: 20px 0;
 }
@@ -30,6 +34,7 @@
     overflow: auto;
     padding: 10px;
     display: flex;
+    margin-top: 30px;
     flex-direction: column;
     align-items: center;
 }

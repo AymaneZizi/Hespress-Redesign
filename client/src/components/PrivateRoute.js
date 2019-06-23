@@ -3,14 +3,13 @@ import { connect } from 'react-redux';
 import { Redirect, Route } from 'react-router-dom'
 
 function PrivateRoute({ component: Component, isAuthenticated, ...rest }) {
-    console.log(isAuthenticated);
     return (
         <Route
             {...rest}
             render={
                 props => isAuthenticated === true ?
-                    (<Component {...props} />) :
-                    (<Redirect to={{ pathname: '/login', state: { pathname: props.location } }} />)
+                    <Component {...props} /> :
+                    <Redirect to={{ pathname: '/login', state: props.location }} />
             }
         />
     )

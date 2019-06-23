@@ -29,7 +29,7 @@ export class Article extends Component {
           <div className="head">
             <Palette image={img}>
               {palette => (
-                <Link to={`/Articles/${_id}`}>
+                <Link to={`/article/${_id}`}>
                   <h3 style={{ color: palette.darkVibrant }}>
                     {title}
                   </h3>

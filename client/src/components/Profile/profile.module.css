@@ -1,0 +1,75 @@
+.profile {
+    max-width: 500px;
+    width: 100%;
+    box-shadow: 0 0 5px rgb(0,0,0,0.1);
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 2px;
+   
+}
+
+.info{
+    display: flex;
+}
+
+.img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: rgb(230,230,230);
+    margin-left: 20px;
+}
+
+.table{
+    margin: 20px 0;
+    width: 100%;
+}
+
+
+.profile input {
+    border: none;
+    padding: 0;
+}
+
+.table td {
+    font: 17px "cairo bold";
+    line-height: 50px;
+}
+
+.table input {
+    font: 17px "cairo Regular";
+    text-align: left;
+    color: #a3a3a3;
+}
+
+.name {
+    font: 20px "cairo bold";
+    margin-bottom: 5px;
+}
+
+.desc {
+    font: 15px "cairo Regular";
+    color: #bababa;
+}
+
+.profile button[type='submit']{
+    font-size: 16px;
+    border: 1px solid #00bad7;
+    width: 100%;
+    line-height: 45px;
+    border-radius: 4px;
+    color: #00bad7;
+    transition: background-color 200ms ease-out;
+}
+
+.profile button[type='submit']:hover {
+    background: #00bad7;
+    color: white;
+    font: 'cairo Regular';
+    transition: background-color 200ms ease-in;
+}
+
+
+.profile input[type='tel'], .profile input[type='email']{
+    direction: ltr;
+}

@@ -27,7 +27,7 @@ export default function ArticleInformations(props) {
                 <input type='file' id="file" onChange={handleChangeImage} accept="image/*"></input>
                 <div>
                     <label htmlFor="file">اختر صورة </label>
-                    {img && <button onClick={handleRemoveImage}><span className="mbri-trash"></span></button>}
+                    {img && <button className='delete-img' onClick={handleRemoveImage}><span className="la la-trash"></span></button>}
                 </div>
                 <img src={img} alt="" />
             </div>
@@ -41,7 +41,7 @@ export default function ArticleInformations(props) {
             </div>
 
 
-            <Input type="date" style={{ paddingLeft: 30 }} name="date" icon="calendar" onChange={onChange} value={moment(date).format('YYYY-MM-DD')} placeholder='تاريخ النشر' />
+            <Input className='input' type="date" style={{ paddingLeft: 30 }} name="date" icon="calendar" onChange={onChange} value={moment(date).format('YYYY-MM-DD')} placeholder='تاريخ النشر' />
 
 
             <InputMultipe title='التصنيف' placeholder='اضف تصنيفا' value={category} onChange={props.onChangeMultipe} name='category' DataSrc='/api/categories' />

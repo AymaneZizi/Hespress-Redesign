@@ -8,12 +8,19 @@
     align-items: center;
 }
 
-.style-buttons > button {
-    margin: 0 20px; 
+.style-buttons > * {
+    margin: 0 16px;
 }
 
-.style-buttons > button > span {
-    font-size:18px;
+.style-buttons > button {
+    font-size: 20px;
+    color: #b4b4b4;
+    transition: color 200ms ease-out;
+}
+
+.style-buttons > button:hover{
+    color: #757575;
+    transition: color 200ms ease-in;
 }
 
 .vertical-sep{

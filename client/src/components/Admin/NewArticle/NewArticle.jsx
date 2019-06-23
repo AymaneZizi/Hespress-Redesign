@@ -100,12 +100,14 @@ export class NewArticle extends Component {
 
         axios.post('/api/images', formData, { headers: { 'Content-Type': 'multipart/form-data' } })
             .then(res => {
-                console.log(res.data.img)
                 this.setState({
                     img: res.data.img
                 })
             })
-            .catch(err => this.message("فشل في الاتصال"))
+            .catch(err => {
+                console.log(err)
+                this.message("فشل في الاتصال")
+            })
     }
 
     handleRemoveImage = async () => {
@@ -125,7 +127,7 @@ export class NewArticle extends Component {
         this.setState({ message: msg })
         setTimeout(() => {
             this.setState({ message: '' })
-        }, 1000)
+        }, 5000)
     }
 
 

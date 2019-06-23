@@ -13,7 +13,7 @@ function LoginPage(props) {
         <div className='loginPage'>
             {
                 props.isAuthenticated ?
-                    (<Redirect to={{ pathname: '/admin' }} />) :
+                    (<Redirect to={{ pathname: props.location.state.pathname }} />) :
                     (<FormContainer />)
             }
         </div>

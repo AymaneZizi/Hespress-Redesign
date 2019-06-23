@@ -83,14 +83,14 @@ function TdArticle(props) {
 
     return (
         <tr onMouseEnter={() => setHovering(true)} onMouseLeave={() => setHovering(false)}>
-            <td><Link to={`/articles/${_id}`}> {title}</Link></td>
+            <td><Link to={`/article/${_id}`}>{title}</Link></td>
             <td>{moment(date).format('DD/MM/YYYY')}</td>
             <td>{views}</td>
             <td>2300</td>
             <td className="buttons">
                 {isHovering &&
                     <>
-                        <Link to={`admin/NewArticle/${_id}`} ><i className="la la-pencil"></i></Link>
+                        <Link to={`admin/NewArticle/${_id}`}><i className="la la-pencil"></i></Link>
                         <button onClick={handleShowConfirm}><i className="la la-trash"></i></button>
                     </>
                 }

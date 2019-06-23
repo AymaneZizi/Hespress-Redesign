@@ -16,7 +16,7 @@ export default function Info(props) {
       <span className="item">
         {country.name_ar}
       </span>
-      <span className="icon mbri-clock" />
+      <span className="icon la la-clock-o" />
       <span className="item">
         {time}
       </span>
