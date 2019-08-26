@@ -15,6 +15,11 @@
 .img {
     width: 80px;
     height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 26px;
+    color: rgb(199, 199, 199);
     border-radius: 50%;
     background: rgb(230,230,230);
     margin-left: 20px;
@@ -29,6 +34,7 @@
 .profile input {
     border: none;
     padding: 0;
+    width: 100%;
 }
 
 .table td {
@@ -72,4 +78,28 @@
 
 .profile input[type='tel'], .profile input[type='email']{
     direction: ltr;
+}
+
+.title {
+    color: rgb(0, 186, 215);
+}
+
+.input {
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    border-bottom: 1px solid rgb(0,0,0,0);
+    padding-bottom: 5px;
+    transition: border .2s ease-out;
+
+}
+
+.input > button {
+    font-size: 15px;
+    margin: 0 10px;
+}
+
+.input:hover {
+    border-bottom: 1px solid grey;
+    transition: border .2s ease-in;
 }

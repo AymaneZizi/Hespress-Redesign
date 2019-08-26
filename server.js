@@ -6,7 +6,6 @@ const config = require('config')
 const app = express();
 
 
-
 //to be moved
 const articles = require('./routes/api/articles')
 const users = require('./routes/api/users')
@@ -34,10 +33,6 @@ app.use('/api/auth', auth);
 app.use('/api/images', images);
 app.use('/api/categories', categories);
 app.use('/api/comments', comments);
-
-
-
-
 
 
 
