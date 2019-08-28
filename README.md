@@ -1,6 +1,6 @@
 # About the project
 This is a redesigned version of Hespress news website, you can check out the the redesegin in my [Behance account](https://www.behance.net/gallery/84588271/HESPRESS-UIUX-Redesign).
-I coded the website using MERN Stack + React Js. This project still in progress.
+I coded the website using MERN Stack + Redux Js. This project still in progress.
 
 
 # Requirements
