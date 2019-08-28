@@ -27,4 +27,4 @@ export default class Vote extends Component {
     }
 }
 
-const Star = () => <div className="circle"><span className="mbri-star"></span></div>
+const Star = () => <div className="circle"><span className="la la-star-o"></span></div>
