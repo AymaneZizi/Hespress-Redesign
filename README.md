@@ -6,7 +6,7 @@ I coded the website using MERN Stack + Redux Js. This project still in progress.
 # Requirements
 1. clone the repository 
 ```
-$ git clone https://github.com/bluezack/news-app
+$ git clone https://github.com/bluezack/https://github.com/bluezack/Hespress-Redesign
 ```
 
 2. create config file
